@@ -1,0 +1,7 @@
+file: gfonts://Roboto
+size: ${size}
+bpp: 4
+glyphs: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜäöüß°µΩ€. ,:;!?+-–*/=%()[]{}<>#'\"_@²³"
+extras:
+  - file: "gfonts://Material+Symbols+Outlined"
+    glyphs: !include glyph_icons.yaml

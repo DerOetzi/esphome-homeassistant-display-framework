@@ -1,0 +1,8 @@
+<<: !include
+  file: base.yaml
+  vars:
+    x: ${x}
+    y: ${y}
+    state_title: "\U0000e846 ${temperature_label | default("Temperature")}"
+    state_unit: ${temperature_unit | default("°C")}"
+    state_id: ${state_id}

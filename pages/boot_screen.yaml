@@ -1,0 +1,123 @@
+api:
+  on_client_connected:
+    - delay: 2s
+    - logger.log:
+        level: INFO
+        format: "Hiding boot screen on connect"
+    - script.execute: go_home
+  on_client_disconnected:
+    - delay: 2s
+    - if:
+        condition: 
+          lambda: 'return !id(api_status).state;'
+        then:
+          - logger.log:
+              level: WARN
+              format: "Showing boot screen on disconnect"
+          - lvgl.widget.show: boot_screen
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+      entity_category: diagnostic
+      on_value:
+        - lvgl.label.update:
+            id: boot_ip_label
+            text: !lambda |-
+              static char buf[100];
+              snprintf(buf, sizeof(buf), "\U0000e8be %s", x.c_str());
+              return buf;
+    ssid:
+      name: Connected SSID
+      entity_category: diagnostic
+      on_value:
+        - lvgl.label.update:
+            id: boot_ssid_label
+            text: !lambda |-
+              static char buf[100];
+              snprintf(buf, sizeof(buf), "\U0000e63e %s", x.c_str());
+              return buf;
+
+image:
+  - file: https://esphome.io/favicon.ico
+    id: boot_esphome_logo
+    resize: 100x100
+    type: RGB565
+    transparency: alpha_channel
+
+lvgl:
+  top_layer:
+    widgets:
+      - obj: 
+          <<: !include ../layout/grid/main.yaml
+          id: boot_screen
+          layout:
+            <<: !include ../layout/grid/layout.yaml
+            grid_rows: [FR(6), FR(2), FR(1), FR(1)]
+            grid_columns: [FR(1), FR(1)]
+          on_press:
+            then:
+              - script.execute: resume_lvgl
+          widgets:
+            - image:
+                <<: !include 
+                  file: ../layout/grid/cell.yaml
+                  vars: 
+                    x: 0 
+                    y: 0
+                    colspan: 2
+                    x_align: CENTER
+                    y_align: CENTER
+                src: boot_esphome_logo
+            - spinner:
+                <<: !include 
+                  file: ../layout/grid/cell.yaml
+                  vars: 
+                    x: 0
+                    y: 1
+                    colspan: 2
+                    x_align: CENTER
+                    y_align: CENTER
+                height: 40
+                width: 40
+                spin_time: 1s
+                arc_length: 60deg
+                arc_width: 5
+                indicator:
+                  arc_color: 0x18bcf2
+                  arc_width: 5
+                on_press:
+                  - script.execute: go_home
+            - label:
+                <<: !include 
+                  file: ../layout/grid/label_cell.yaml
+                  vars: 
+                    x: 0
+                    y: 2
+                    colspan: 2
+                    y_align: START
+                    text: ${boot_connecting | default("Waiting for connection...")}
+                    font_size: sm
+            - label:
+                <<: !include 
+                  file: ../layout/grid/label_cell.yaml
+                  vars: 
+                    x: 0
+                    y: 3
+                    x_align: START
+                    y_align: END
+                    text: "\U0000e63e ${boot_no_ssid | default(\"No SSID\")}"
+                    font_size: sm
+                id: boot_ssid_label
+            - label:
+                <<: !include 
+                  file: ../layout/grid/label_cell.yaml
+                  vars: 
+                    x: 1
+                    y: 3
+                    x_align: END
+                    y_align: END
+                    text: "\U0000e8be ${boot_no_ip | default(\"No IP Address\")}"
+                    font_size: sm
+                id: boot_ip_label

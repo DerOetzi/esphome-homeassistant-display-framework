@@ -1,0 +1,9 @@
+lvgl:
+  pages:
+    - id: ${page_id}
+      pad_top: ${HEAD_HEIGHT}
+      pad_bottom: ${NAV_HEIGHT}
+      on_load:
+        - lvgl.label.update:
+            id: page_title
+            text: ${page_title}

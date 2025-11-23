@@ -1,0 +1,82 @@
+packages:
+  common: !include 
+    file: common.yaml
+    vars:
+      page_id: guest_wifi_page
+      page_title: ${guest_wifi_page_title | default("Guest WiFi")}
+
+lvgl:
+  pages:
+    - id: !extend guest_wifi_page
+      widgets:
+        - obj:
+            <<: !include ../layout/grid/main.yaml
+            layout:
+              <<: !include ../layout/grid/layout.yaml
+              grid_rows: [FR(1)]
+              grid_columns: [FR(2), FR(3)]
+            widgets:
+              - qrcode:  
+                  <<: !include 
+                    file: ../layout/grid/cell.yaml
+                    vars: 
+                      x: 0
+                      y: 0
+                      x_align: CENTER
+                      y_align: START
+                      pad_all: ${GRID_PADDING}
+                  size: 120
+                  text: !secret guest_wifi_qr
+              - obj:
+                  <<: !include 
+                    file: ../layout/grid/cell.yaml 
+                    vars: 
+                      x: 1
+                      y: 0
+                      y_align: START
+                      pad_all: ${GRID_PADDING}
+                  layout:
+                    <<: !include ../layout/grid/layout.yaml
+                    grid_rows: [FR(1), FR(1), FR(1), FR(1), FR(1)]
+                    grid_columns: [FR(1)]
+                  border_width: 0
+                  widgets:
+                    - label:
+                    
+                        <<: !include 
+                          file: ../layout/grid/label_cell.yaml
+                          vars: 
+                            x: 0
+                            y: 0
+                            x_align: START
+                            y_align: END
+                            text: "\U0000e63e ${guest_wifi_ssid_label | default(\"SSID\")}:"
+                            font_size: sm
+                    - label:
+                        <<: !include 
+                          file: ../layout/grid/label_cell.yaml
+                          vars: 
+                            x: 0
+                            y: 1
+                            x_align: START
+                            y_align: START
+                            text: !secret guest_wifi_ssid
+                    - label:
+                        <<: !include 
+                          file: ../layout/grid/label_cell.yaml
+                          vars: 
+                            x: 0
+                            y: 2
+                            x_align: START
+                            y_align: END
+                            text: "\U0000e73c ${guest_wifi_password_label | default(\"Password\")}:"
+                            font_size: sm
+                    - label:
+                        <<: !include 
+                          file: ../layout/grid/label_cell.yaml
+                          vars: 
+                            x: 0
+                            y: 3
+                            x_align: START
+                            y_align: START
+                            text: !secret guest_wifi_password

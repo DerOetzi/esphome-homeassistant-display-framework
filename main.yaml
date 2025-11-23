@@ -1,0 +1,172 @@
+number:
+  - platform: template
+    name: Screen timeout
+    optimistic: true
+    id: display_timeout
+    unit_of_measurement: "s"
+    initial_value: 45
+    restore_value: true
+    min_value: 10
+    max_value: 180
+    step: 5
+    mode: box
+
+binary_sensor:
+  - platform: status
+    id: api_status
+    name: Status
+
+time:
+  - id: ha_time
+    platform: homeassistant
+    on_time_sync:
+      - lvgl.label.update:
+          id: nav_clock
+          text:
+            time_format: "%H:%M"
+            time: ha_time
+      - lvgl.label.update:
+          id: standby_clock
+          text:
+            time_format: "%H:%M"
+            time: ha_time
+    on_time:
+      - minutes: '*'
+        seconds: 0
+        then:
+          - lvgl.label.update:
+              id: nav_clock
+              text:
+                time_format: "%H:%M"
+                time: ha_time
+          - lvgl.label.update:
+              id: standby_clock
+              text:
+                time_format: "%H:%M"
+                time: ha_time
+      - hours: 2,3,4,5
+        minutes: 5
+        seconds: 0
+        then:
+          - switch.turn_on: switch_antiburn
+      - hours: 2,3,4,5
+        minutes: 35
+        seconds: 0
+        then:
+          - switch.turn_off: switch_antiburn
+
+switch:
+  - platform: template
+    name: Antiburn
+    id: switch_antiburn
+    icon: mdi:television-shimmer
+    restore_mode: ALWAYS_OFF
+    optimistic: true
+    entity_category: "config"
+    turn_on_action:
+      - logger.log: 
+          level: INFO
+          format: "Starting Antiburn"
+      - delay: 2s
+      - script.execute: standby
+    turn_off_action:
+      - logger.log: 
+          level: INFO
+          format: "Stopping Antiburn"
+      - delay: 2s
+      - script.execute: standby
+  - platform: template
+    name: "Show standby screen"
+    id: switch_show_standby
+    icon: mdi:sleep
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+    entity_category: "config"
+    turn_on_action:
+      - delay: 2s
+      - script.execute: standby
+    turn_off_action:
+      - delay: 2s
+      - script.execute: standby
+
+script:
+  - id: standby
+    then:
+      - if:
+          condition:
+            lambda: 'return id(switch_antiburn).state;'
+          then:
+            - script.execute: resume_lvgl
+            - logger.log: 
+                level: INFO
+                format: "Entering antiburn mode"
+            - light.turn_off:
+                id: backlight
+            - lvgl.pause:
+                show_snow: true
+          else:
+            - lvgl.widget.show: standby_screen
+            - lvgl.page.show: ${home_page}
+            - delay: 1s
+            - if:
+                condition:
+                  lambda: 'return id(switch_show_standby).state;'
+                then:
+                  - logger.log: 
+                      level: INFO
+                      format: "Standby screen"
+                  - script.execute: resume_lvgl
+                  - delay: 2s
+                  - light.turn_on:
+                      id: backlight
+                      brightness: !lambda 'return id(standby_brightness).state / 100.0;'
+                else:
+                  - logger.log: 
+                      level: INFO
+                      format: "Full standby"
+                  - light.turn_off:
+                      id: backlight
+                  - lvgl.pause: 
+  - id: resume_lvgl
+    then:
+      - if:
+          condition: lvgl.is_paused
+          then:
+            - lvgl.resume:
+      - light.turn_on:
+          id: backlight
+          brightness: 100%
+
+  - id: go_home
+    then:
+      - lvgl.page.show: ${home_page}
+      - script.execute: resume_lvgl
+      - lvgl.widget.hide: standby_screen
+      - lvgl.widget.hide: boot_screen
+
+lvgl:
+  buffer_size: 25%
+  default_font: roboto_md
+  resume_on_input: true
+  on_resume:
+    - logger.log: 
+        level: INFO
+        format: "LVGL resumed"
+    - lvgl.widget.redraw:
+    - light.turn_on:
+        id: backlight
+        brightness: 100%
+
+  on_idle:
+    timeout: !lambda "return id(display_timeout).state * 1000;"
+    then:
+      - logger.log: 
+          level: INFO
+          format: "LVGL is idle"
+      - script.execute: standby
+
+packages:
+  header: !include header.yaml
+  footer: !include footer.yaml
+  standby: !include pages/standby.yaml
+  boot_screen: !include pages/boot_screen.yaml

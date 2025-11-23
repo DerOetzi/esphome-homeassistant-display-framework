@@ -1,0 +1,4 @@
+file: "gfonts://Material+Symbols+Outlined" 
+size: ${size}
+bpp: 2
+glyphs: !include glyph_icons.yaml

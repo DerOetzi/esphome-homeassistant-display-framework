@@ -1,0 +1,26 @@
+
+
+lvgl:
+  top_layer:
+    widgets:
+      - obj: 
+          id: titlebar
+          width: 100%
+          height: ${HEAD_HEIGHT}
+          border_width: 0
+          radius: 0
+          pad_all: 0
+          align: TOP_MID
+          widgets:
+            - label: 
+                id: page_title
+                align: LEFT_MID
+                x: ${HEAD_PADDING}
+                text_font: roboto_md 
+                text: " "
+            - label: 
+                id: nav_clock
+                align: RIGHT_MID
+                x: -${HEAD_PADDING}
+                text_font: roboto_md
+                text: " "

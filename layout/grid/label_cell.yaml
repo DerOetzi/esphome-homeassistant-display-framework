@@ -1,0 +1,12 @@
+<<: !include
+  file: cell.yaml
+  vars:
+    x: $x
+    y: $y
+    pad_all: 0
+    x_align: "${x_align | default(\"CENTER\")}"
+    y_align: "${y_align | default(\"CENTER\")}"
+    colspan: ${colspan | default(1)}
+    rowspan: ${rowspan | default(1)}
+text: "${text | default(\" \")}"
+text_font: "roboto_${font_size | default(\"md\")}"

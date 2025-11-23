@@ -1,0 +1,6 @@
+substitutions:
+  weather_condition_sensor: sensor.openweathermap_condition
+  weather_temperature_sensor: sensor.openweathermap_temperature
+  weather_humidity_sensor: sensor.openweathermap_humidity
+  weather_temperature_min_sensor: sensor.openweathermap_forecast_temperature_low
+  weather_temperature_max_sensor: sensor.openweathermap_forecast_temperature

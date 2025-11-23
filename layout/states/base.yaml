@@ -1,0 +1,63 @@
+<<: !include 
+  file: ../grid/cell.yaml
+  vars: 
+    x: ${x} 
+    y: ${y}
+    pad_all: ${GRID_PADDING}
+layout:
+  <<: !include ../grid/layout.yaml
+  grid_rows: [FR(1), FR(2), FR(1)]
+  grid_columns: [FR(3), FR(2)]
+id: ${state_id}
+widgets:
+  - label:
+      <<: !include
+        file: ../grid/label_cell.yaml
+        vars:
+          x: 0
+          y: 0
+          colspan: 2
+          x_align: START
+          text: ${state_title}
+          font_size: "sm"
+  - label:
+      <<: !include
+        file: ../grid/label_cell.yaml
+        vars:
+          x: 0
+          y: 1
+          x_align: END
+          y_align: END
+          font_size: "lg"
+      id: "state_${state_id}"
+  - label:
+      <<: !include
+        file: ../grid/label_cell.yaml
+        vars:
+          x: 1
+          y: 1
+          x_align: START
+          y_align: END
+          text: ${state_unit | default(" ")}
+  - label:
+      <<: !include
+        file: ../grid/label_cell.yaml
+        vars:
+          x: 0
+          y: 2
+          x_align: END
+          y_align: END
+          font_size: "sm"
+      id: "second_state_${state_id}"
+      text_color: ${second_state_color | default(0x000000)}
+  - label:
+      <<: !include
+        file: ../grid/label_cell.yaml
+        vars:
+          x: 1
+          y: 2
+          x_align: START
+          y_align: END
+          font_size: "sm"
+          text: ${second_state_unit | default(" ")}
+      text_color: ${second_state_color | default(0x000000)}

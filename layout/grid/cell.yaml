@@ -1,0 +1,8 @@
+grid_cell_column_pos: ${x}
+grid_cell_row_pos: ${y}
+grid_cell_x_align: "${x_align | default(\"STRETCH\")}"
+grid_cell_y_align: "${y_align | default(\"STRETCH\")}"
+grid_cell_column_span: ${colspan | default(1)}
+grid_cell_row_span: ${rowspan | default(1)}
+scrollable: false
+pad_all: ${pad_all | default(0)}

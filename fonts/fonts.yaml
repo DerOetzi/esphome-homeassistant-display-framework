@@ -1,0 +1,15 @@
+font:
+  - id: roboto_sm
+    <<: !include {file: font_text.yaml, vars: {size: $text_sm}}
+  - id: roboto_md
+    <<: !include {file: font_text.yaml, vars: {size: $text_md}}
+  - id: roboto_lg
+    <<: !include {file: font_text.yaml, vars: {size: $text_lg}}
+  - id: roboto_xl
+    <<: !include {file: font_text.yaml, vars: {size: $text_xl}}
+  - id: roboto_xxl
+    <<: !include {file: font_text.yaml, vars: {size: $text_xxl}}
+  
+  - id: mdi_xl
+    <<: !include {file: font_icon.yaml, vars: {size: $icons_xl}}
+  
