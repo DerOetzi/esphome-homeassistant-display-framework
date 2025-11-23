@@ -1,5 +1,4 @@
 packages:
-  weather_config: !include ../config/weather_config.yaml
   common: !include 
     file: common.yaml
     vars:
