@@ -3,7 +3,7 @@ packages:
     file: common.yaml
     vars:
       page_id: guest_wifi_page
-      page_title: ${guest_wifi_page_title | default("Guest WiFi")}
+      page_title: ${guest_wifi_page_title}
 
 lvgl:
   pages:
@@ -50,7 +50,7 @@ lvgl:
                             y: 0
                             x_align: START
                             y_align: END
-                            text: "\U0000e63e ${guest_wifi_ssid_label | default(\"SSID\")}:"
+                            text: "\U0000e63e ${guest_wifi_ssid_label}:"
                             font_size: sm
                     - label:
                         <<: !include 
@@ -69,7 +69,7 @@ lvgl:
                             y: 2
                             x_align: START
                             y_align: END
-                            text: "\U0000e73c ${guest_wifi_password_label | default(\"Password\")}:"
+                            text: "\U0000e73c ${guest_wifi_password_label}:"
                             font_size: sm
                     - label:
                         <<: !include 

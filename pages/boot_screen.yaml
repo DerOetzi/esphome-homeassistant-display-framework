@@ -97,7 +97,7 @@ lvgl:
                     y: 2
                     colspan: 2
                     y_align: START
-                    text: ${boot_connecting | default("Waiting for connection...")}
+                    text: ${boot_connecting}
                     font_size: sm
             - label:
                 <<: !include 
@@ -107,7 +107,7 @@ lvgl:
                     y: 3
                     x_align: START
                     y_align: END
-                    text: "\U0000e63e ${boot_no_ssid | default(\"No SSID\")}"
+                    text: "\U0000e63e ${boot_no_ssid}"
                     font_size: sm
                 id: boot_ssid_label
             - label:
@@ -118,6 +118,6 @@ lvgl:
                     y: 3
                     x_align: END
                     y_align: END
-                    text: "\U0000e8be ${boot_no_ip | default(\"No IP Address\")}"
+                    text: "\U0000e8be ${boot_no_ip}"
                     font_size: sm
                 id: boot_ip_label

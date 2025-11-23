@@ -3,8 +3,8 @@
   vars:
     x: ${x}
     y: ${y}
-    state_title: "\U0000f164 ${humidity_label | default(\"Humidity\")}"
+    state_title: "\U0000f164 ${humidity_label}"
     state_id: ${state_id}
     state_unit: "%"
-    second_state_unit: ${absolute_humidity_unit | default("g/m³")}
+    second_state_unit: ${absolute_humidity_unit}
     second_state_color: "0xAAAAAA"

@@ -1,3 +1,11 @@
+packages:
+  weather_config: !include ../config/weather_config.yaml
+  common: !include 
+    file: common.yaml
+    vars:
+      page_id: weather_page
+      page_title: ${weather_page_title}
+
 text_sensor:
   - platform: homeassistant
     id: weather_condition
@@ -9,170 +17,170 @@ text_sensor:
               lambda: 'return x == "clear-night";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000f34f"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_clear_night | default("Clear Night")}
+                  id: state_weather_condition
+                  text: ${weather_clear_night}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f34f ${weather_clear_night | default(\"Clear Night\")}"
+                  text: "\U0000f34f ${weather_clear_night}"
         - if:
             condition:
               lambda: 'return x == "cloudy";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000e2bd"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_cloudy | default("Cloudy")}
+                  id: state_weather_condition
+                  text: ${weather_cloudy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e2bd ${weather_cloudy | default(\"Cloudy\")}"
+                  text: "\U0000e2bd ${weather_cloudy}"
         - if:
             condition:
               lambda: 'return x == "exceptional";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000ebd5"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_exceptional | default("Exceptional")}
+                  id: state_weather_condition
+                  text: ${weather_exceptional}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000ebd5 ${weather_exceptional | default(\"Exceptional\")}"
+                  text: "\U0000ebd5 ${weather_exceptional}"
         - if:
             condition:
               lambda: 'return x == "fog";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000e188"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_fog | default("Fog")}
+                  id: state_weather_condition
+                  text: ${weather_fog}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e188 ${weather_fog | default(\"Fog\")}"
+                  text: "\U0000e188 ${weather_fog}"
         - if:
             condition:
               lambda: 'return x == "hail";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000f67f"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_hail | default("Hail")}
+                  id: state_weather_condition
+                  text: ${weather_hail}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f67f ${weather_hail | default(\"Hail\")}"
+                  text: "\U0000f67f ${weather_hail}"
         - if:
             condition:
               lambda: 'return x == "snowy-rainy";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000f67f"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_snowy_rainy | default("Snowy Rainy")}
+                  id: state_weather_condition
+                  text: ${weather_snowy_rainy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f67f ${weather_snowy_rainy | default(\"Snowy Rainy\")}"
+                  text: "\U0000f67f ${weather_snowy_rainy}"
         - if:
             condition:
               lambda: 'return x == "lightning" || x == "lightning-rainy";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000ebdb"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_lightning | default("Lightning")}
+                  id: state_weather_condition
+                  text: ${weather_lightning}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000ebdb ${weather_lightning | default(\"Lightning\")}"
+                  text: "\U0000ebdb ${weather_lightning}"
         - if:
             condition:
               lambda: 'return x == "partlycloudy";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000f172"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_partlycloudy | default("Partly Cloudy")}
+                  id: state_weather_condition
+                  text: ${weather_partlycloudy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f172 ${weather_partlycloudy | default(\"Partly Cloudy\")}"
+                  text: "\U0000f172 ${weather_partlycloudy}"
         - if:
             condition:
               lambda: 'return x == "pouring";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000f61f"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_pouring | default("Pouring")}
+                  id: state_weather_condition
+                  text: ${weather_pouring}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f61f ${weather_pouring | default(\"Pouring\")}"
+                  text: "\U0000f61f ${weather_pouring}"
         - if:
             condition:
               lambda: 'return x == "rainy";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000f176"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_rainy | default("Rainy")}
+                  id: state_weather_condition
+                  text: ${weather_rainy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f176 ${weather_rainy | default(\"Rainy\")}"
+                  text: "\U0000f176 ${weather_rainy}"
         - if:
             condition:
               lambda: 'return x == "snowy";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000e2cd"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_snowy | default("Snowy")}
+                  id: state_weather_condition
+                  text: ${weather_snowy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e2cd ${weather_snowy | default(\"Snowy\")}"
+                  text: "\U0000e2cd ${weather_snowy}"
         - if:
             condition:
               lambda: 'return x == "sunny";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000e81a"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_sunny | default("Sunny")}
+                  id: state_weather_condition
+                  text: ${weather_sunny}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e81a ${weather_sunny | default(\"Sunny\")}"
+                  text: "\U0000e81a ${weather_sunny}"
         - if:
             condition:
               lambda: 'return x == "windy" || x == "windy-variant";'
             then:
               - lvgl.label.update:
-                  id: weather_icon_label
+                  id: icon_weather_condition
                   text: "\U0000efd8"
               - lvgl.label.update:
-                  id: weather_condition_label
-                  text: ${weather_windy | default("Windy")}
+                  id: state_weather_condition
+                  text: ${weather_windy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000efd8 ${weather_windy | default("Windy")}"
+                  text: "\U0000efd8 ${weather_windy}"
                 
 sensor:
   - platform: homeassistant
@@ -180,30 +188,30 @@ sensor:
     entity_id: ${weather_temperature_sensor}
     on_value:
       - lvgl.label.update:
-          id: weather_temperature_label
+          id: state_weather_temperature
           text:
             format: "%.1f"
             args: [ 'x' ]
       - lvgl.label.update:
           id: standby_weather_temperature_label
           text:
-            format: "\U0000e846 %.1f ${temperature_unit | default(\"°C\")}"
+            format: "\U0000e846 %.1f ${temperature_unit}"
             args: [ 'x' ]
   - platform: homeassistant
-    id: weather_min_temperature
+    id: weather_temperature_min
     entity_id: ${weather_temperature_min_sensor}
     on_value:
       - lvgl.label.update:
-          id: weather_temperature_min_sensor
+          id: state_weather_temperature_min
           text:
             format: "%.1f"
             args: [ 'x' ]
   - platform: homeassistant
-    id: weather_max_temperature
-    entity_id: sensor.openweathermap_forecast_temperature
+    id: weather_temperature_max
+    entity_id: ${weather_temperature_max_sensor}
     on_value:
       - lvgl.label.update:
-          id: ${weather_temperature_max_sensor}
+          id: state_weather_temperature_max
           text:
             format: "%.1f"
             args: [ 'x' ]
@@ -212,17 +220,10 @@ sensor:
     entity_id: ${weather_humidity_sensor}
     on_value:
       - lvgl.label.update:
-          id: weather_humidity_label
+          id: state_weather_humidity
           text:
             format: "%.0f"
             args: [ 'x' ]
-
-packages:
-  common: !include 
-    file: common.yaml
-    vars:
-      page_id: weather_page
-      page_title: "Wetter"
 
 lvgl:
   pages:
@@ -256,7 +257,7 @@ lvgl:
                             y: 0
                             y_align: START
                             text: "\U0000e2c1"
-                        id: weather_icon_label
+                        id: icon_weather_condition
                         text_font: mdi_xl
                     - label:
                         <<: !include 
@@ -267,7 +268,7 @@ lvgl:
                             y_align: START
                             font_size: sm
                             text: "Lädt..."
-                        id: weather_condition_label
+                        id: state_weather_condition
               - obj:
                   <<: !include 
                     file: ../layout/grid/cell.yaml 
@@ -290,7 +291,7 @@ lvgl:
                             colspan: 3
                             x_align: END
                             font_size: xxl
-                        id: weather_temperature_label
+                        id: state_weather_temperature
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -298,7 +299,7 @@ lvgl:
                             x: 3
                             y: 0
                             x_align: START
-                            text: ${temperature_unit | default("°C")}
+                            text: ${temperature_unit}
                             font_size: xl
                     - label:
                         <<: !include 
@@ -307,7 +308,7 @@ lvgl:
                             x: 0
                             y: 1
                             x_align: START
-                            text: "\U0000e846 ${weather_temperature_min_label | default(\"Min.\")}"
+                            text: "\U0000e846 ${weather_temperature_min_label}"
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -315,7 +316,7 @@ lvgl:
                             x: 2
                             y: 1
                             x_align: END
-                        id: weather_min_temperature_label
+                        id: state_weather_temperature_min
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -323,7 +324,7 @@ lvgl:
                             x: 3
                             y: 1
                             x_align: START
-                            text: ${temperature_unit | default("°C")}
+                            text: ${temperature_unit}
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -331,7 +332,7 @@ lvgl:
                             x: 0
                             y: 2
                             x_align: START
-                            text: "\U0000e846 ${weather_temperature_max_label | default(\"Max.\")}"
+                            text: "\U0000e846 ${weather_temperature_max_label}"
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -339,7 +340,7 @@ lvgl:
                             x: 2
                             y: 2
                             x_align: END
-                        id: weather_max_temperature_label
+                        id: state_weather_temperature_max
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -347,7 +348,7 @@ lvgl:
                             x: 3
                             y: 2
                             x_align: START
-                            text: "${temperature_unit | default("°C")}"
+                            text: ${temperature_unit}
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -356,7 +357,7 @@ lvgl:
                             y: 3
                             colspan: 2
                             x_align: START
-                            text: "\U0000f164 ${humidity_label | default("Humidity")}"
+                            text: "\U0000f164 ${humidity_label}"
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -364,7 +365,7 @@ lvgl:
                             x: 2
                             y: 3
                             x_align: END
-                        id: weather_humidity_label
+                        id: state_weather_humidity
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml

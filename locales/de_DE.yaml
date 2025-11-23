@@ -1,4 +1,4 @@
-substitions:
+substitutions:
   humidity_label: "Luftfeuchte"
   absolute_humidity_unit: "g/m³"
   temperature_label: "Temperatur"
@@ -9,6 +9,7 @@ substitions:
   guest_wifi_page_title: "Gastzugang"
   guest_wifi_ssid_label: "SSID"
   guest_wifi_password_label: "Passwort"
+  weather_page_title: "Wetter"
   weather_clear_night: "Klare Nacht"
   weather_cloudy: "Bewölkt"
   weather_exceptional: "Außergewöhnlich"
