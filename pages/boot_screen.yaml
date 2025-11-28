@@ -26,7 +26,7 @@ text_sensor:
             id: boot_ip_label
             text: !lambda |-
               static char buf[100];
-              snprintf(buf, sizeof(buf), "\U0000e8be %s", x.c_str());
+              snprintf(buf, sizeof(buf), "${mdo_ethernet} %s", x.c_str());
               return buf;
     ssid:
       name: Connected SSID
@@ -36,7 +36,7 @@ text_sensor:
             id: boot_ssid_label
             text: !lambda |-
               static char buf[100];
-              snprintf(buf, sizeof(buf), "\U0000e63e %s", x.c_str());
+              snprintf(buf, sizeof(buf), "${mdo_wifi} %s", x.c_str());
               return buf;
 
 image:
@@ -107,7 +107,7 @@ lvgl:
                     y: 3
                     x_align: START
                     y_align: END
-                    text: "\U0000e63e ${boot_no_ssid}"
+                    text: "${mdo_wifi} ${boot_no_ssid}"
                     font_size: sm
                 id: boot_ssid_label
             - label:
@@ -118,6 +118,6 @@ lvgl:
                     y: 3
                     x_align: END
                     y_align: END
-                    text: "\U0000e8be ${boot_no_ip}"
+                    text: "${mdo_ethernet} ${boot_no_ip}"
                     font_size: sm
                 id: boot_ip_label

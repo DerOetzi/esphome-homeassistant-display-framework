@@ -17,169 +17,169 @@ text_sensor:
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000f34f"
+                  text: ${mdo_clear_night}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_clear_night}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f34f ${weather_clear_night}"
+                  text: "${mdo_clear_night} ${weather_clear_night}"
         - if:
             condition:
               lambda: 'return x == "cloudy";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000e2bd"
+                  text: ${mdo_cloudy}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_cloudy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e2bd ${weather_cloudy}"
+                  text: "${mdo_cloudy} ${weather_cloudy}"
         - if:
             condition:
               lambda: 'return x == "exceptional";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000ebd5"
+                  text: ${mdo_exceptional}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_exceptional}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000ebd5 ${weather_exceptional}"
+                  text: "${mdo_exceptional} ${weather_exceptional}"
         - if:
             condition:
               lambda: 'return x == "fog";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000e188"
+                  text: ${mdo_fog}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_fog}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e188 ${weather_fog}"
+                  text: "${mdo_fog} ${weather_fog}"
         - if:
             condition:
               lambda: 'return x == "hail";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000f67f"
+                  text: ${mdo_hail}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_hail}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f67f ${weather_hail}"
+                  text: "${mdo_hail} ${weather_hail}"
         - if:
             condition:
               lambda: 'return x == "snowy-rainy";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000f67f"
+                  text: ${mdo_hail}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_snowy_rainy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f67f ${weather_snowy_rainy}"
+                  text: "${mdo_hail} ${weather_snowy_rainy}"
         - if:
             condition:
               lambda: 'return x == "lightning" || x == "lightning-rainy";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000ebdb"
+                  text: ${mdo_lightning}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_lightning}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000ebdb ${weather_lightning}"
+                  text: "${mdo_lightning} ${weather_lightning}"
         - if:
             condition:
               lambda: 'return x == "partlycloudy";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000f172"
+                  text: ${mdo_partlycloudy}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_partlycloudy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f172 ${weather_partlycloudy}"
+                  text: "${mdo_partlycloudy} ${weather_partlycloudy}"
         - if:
             condition:
               lambda: 'return x == "pouring";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000f61f"
+                  text: ${mdo_pouring}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_pouring}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f61f ${weather_pouring}"
+                  text: "${mdo_pouring} ${weather_pouring}"
         - if:
             condition:
               lambda: 'return x == "rainy";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000f176"
+                  text: ${mdo_rainy}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_rainy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000f176 ${weather_rainy}"
+                  text: "${mdo_rainy} ${weather_rainy}"
         - if:
             condition:
               lambda: 'return x == "snowy";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000e2cd"
+                  text: ${mdo_snowy}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_snowy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e2cd ${weather_snowy}"
+                  text: "${mdo_snowy} ${weather_snowy}"
         - if:
             condition:
               lambda: 'return x == "sunny";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000e81a"
+                  text: ${mdo_sunny}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_sunny}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000e81a ${weather_sunny}"
+                  text: "${mdo_sunny} ${weather_sunny}"
         - if:
             condition:
               lambda: 'return x == "windy" || x == "windy-variant";'
             then:
               - lvgl.label.update:
                   id: icon_weather_condition
-                  text: "\U0000efd8"
+                  text: ${mdo_windy}
               - lvgl.label.update:
                   id: state_weather_condition
                   text: ${weather_windy}
               - lvgl.label.update:
                   id: standby_weather_condition_label
-                  text: "\U0000efd8 ${weather_windy}"
+                  text: "${mdo_windy} ${weather_windy}"
                 
 sensor:
   - platform: homeassistant
@@ -194,7 +194,7 @@ sensor:
       - lvgl.label.update:
           id: standby_weather_temperature_label
           text:
-            format: "\U0000e846 %.1f ${temperature_unit}"
+            format: "${mdo_thermometer} %.1f ${temperature_unit}"
             args: [ 'x' ]
   - platform: homeassistant
     id: weather_temperature_min
@@ -255,7 +255,7 @@ lvgl:
                             x: 0
                             y: 0
                             y_align: START
-                            text: "\U0000e2c1"
+                            text: ${mdo_cloud_off}
                         id: icon_weather_condition
                         text_font: mdi_xl
                     - label:
@@ -307,7 +307,7 @@ lvgl:
                             x: 0
                             y: 1
                             x_align: START
-                            text: "\U0000e846 ${weather_temperature_min_label}"
+                            text: "${mdo_thermometer} ${weather_temperature_min_label}"
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -331,7 +331,7 @@ lvgl:
                             x: 0
                             y: 2
                             x_align: START
-                            text: "\U0000e846 ${weather_temperature_max_label}"
+                            text: "${mdo_thermometer} ${weather_temperature_max_label}"
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml
@@ -356,7 +356,7 @@ lvgl:
                             y: 3
                             colspan: 2
                             x_align: START
-                            text: "\U0000f164 ${humidity_label}"
+                            text: "${mdo_humidity} ${humidity_label}"
                     - label:
                         <<: !include 
                           file: ../layout/grid/label_cell.yaml

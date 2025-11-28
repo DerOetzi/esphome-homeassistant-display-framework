@@ -50,7 +50,7 @@ lvgl:
                             y: 0
                             x_align: START
                             y_align: END
-                            text: "\U0000e63e ${guest_wifi_ssid_label}:"
+                            text: "${mdo_wifi} ${guest_wifi_ssid_label}:"
                             font_size: sm
                     - label:
                         <<: !include 
@@ -69,7 +69,7 @@ lvgl:
                             y: 2
                             x_align: START
                             y_align: END
-                            text: "\U0000e73c ${guest_wifi_password_label}:"
+                            text: "${mdo_key} ${guest_wifi_password_label}:"
                             font_size: sm
                     - label:
                         <<: !include 

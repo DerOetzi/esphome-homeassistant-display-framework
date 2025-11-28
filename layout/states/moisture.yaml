@@ -1,0 +1,8 @@
+<<: !include
+  file: base.yaml
+  vars:
+    x: ${x}
+    y: ${y}
+    state_title: "${mdo_potted_plant} ${plant_name}"
+    state_unit: ${moisture_unit}
+    state_id: ${state_id}

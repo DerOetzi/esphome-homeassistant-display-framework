@@ -3,7 +3,7 @@
   vars:
     x: ${x}
     y: ${y}
-    state_title: "\U0000f164 ${humidity_label}"
+    state_title: "${mdo_humidity} ${humidity_label}"
     state_id: ${state_id}
     state_unit: "%"
     second_state_unit: ${absolute_humidity_unit}

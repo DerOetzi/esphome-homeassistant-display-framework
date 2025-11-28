@@ -12,4 +12,29 @@ font:
   
   - id: mdi_xl
     <<: !include {file: font_icon.yaml, vars: {size: $icons_xl}}
+
+substitutions:
+  mdo_thermometer: "\U0000e846"
+  mdo_humidity: "\U0000f164"
+  mdo_arrow_back: "\U0000e2ea"
+  mdo_arrow_forward: "\U0000e5e1"
+  mdo_home: "\U0000e88a"
+  mdo_wifi: "\U0000e63e"
+  mdo_ethernet: "\U0000e8be"
+  mdo_key: "\U0000e73c"
+  mdo_clear_night: "\U0000f34f"
+  mdo_cloudy: "\U0000e2bd"
+  mdo_exceptional: "\U0000ebd5"
+  mdo_fog: "\U0000e188"
+  mdo_hail: "\U0000f67f"
+  mdo_lightning: "\U0000ebdb"
+  mdo_partlycloudy: "\U0000f172"
+  mdo_pouring: "\U0000f61f"
+  mdo_rainy: "\U0000f176"
+  mdo_snowy: "\U0000e2cd"
+  mdo_sunny: "\U0000e81a"
+  mdo_windy: "\U0000efd8"
+  mdo_cloud_off: "\U0000e2c1"
+  mdo_dishwasher: "\U0000e9a0"
+  mdo_potted_plant: "\U0000f8aa" 
   

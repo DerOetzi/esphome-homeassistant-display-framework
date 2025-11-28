@@ -26,7 +26,7 @@ lvgl:
                 widgets:
                   - label:
                       align: CENTER
-                      text: "\U0000e2ea"
+                      text: ${mdo_arrow_back}
                       text_font: roboto_xl
             - button: 
                 id: home_btn
@@ -40,7 +40,7 @@ lvgl:
                 widgets:
                   - label:
                       align: CENTER
-                      text: "\U0000e88a"
+                      text: ${mdo_home}
                       text_font: roboto_xl
             - button: 
                 height: 100%
@@ -53,5 +53,5 @@ lvgl:
                 widgets:
                   - label:
                       align: CENTER
-                      text: "\U0000e5e1"
+                      text: ${mdo_arrow_forward}
                       text_font: roboto_xl

@@ -3,6 +3,6 @@
   vars:
     x: ${x}
     y: ${y}
-    state_title: "\U0000e846 ${temperature_label}"
+    state_title: "${mdo_thermometer} ${temperature_label}"
     state_unit: ${temperature_unit}
     state_id: ${state_id}
