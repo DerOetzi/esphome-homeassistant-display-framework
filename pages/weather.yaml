@@ -5,181 +5,80 @@ packages:
       page_id: weather_page
       page_title: ${weather_page_title}
 
+mapping:
+  - id: weather_icon
+    from: string
+    to: string
+    entries:
+      clear-night: ${mdo_clear_night}
+      cloudy: ${mdo_cloudy}
+      exceptional: ${mdo_exceptional}
+      fog: ${mdo_fog}
+      hail: ${mdo_hail}
+      lightning: ${mdo_lightning}
+      lightning-rainy: ${mdo_lightning}
+      partlycloudy: ${mdo_partlycloudy}
+      pouring: ${mdo_pouring}
+      rainy: ${mdo_rainy}
+      snowy: ${mdo_snowy}
+      snowy-rainy: ${mdo_hail}
+      sunny: ${mdo_sunny}
+      windy: ${mdo_windy}
+      windy-variant: ${mdo_windy}
+  - id: weather_condition_translation
+    from: string
+    to: string
+    entries:
+      clear-night: ${weather_clear_night}
+      cloudy: ${weather_cloudy}
+      exceptional: ${weather_exceptional}
+      fog: ${weather_fog}
+      hail: ${weather_hail}
+      lightning: ${weather_lightning}
+      lightning-rainy: ${weather_lightning}
+      partlycloudy: ${weather_partlycloudy}
+      pouring: ${weather_pouring}
+      rainy: ${weather_rainy}
+      snowy: ${weather_snowy}
+      snowy-rainy: ${weather_snowy_rainy}
+      sunny: ${weather_sunny}
+      windy: ${weather_windy}
+      windy-variant: ${weather_windy}
+  - id: weather_icon_and_condition_translation
+    from: string
+    to: string
+    entries:
+      clear-night: "${mdo_clear_night} ${weather_clear_night}"
+      cloudy: "${mdo_cloudy} ${weather_cloudy}"
+      exceptional: "${mdo_exceptional} ${weather_exceptional}"
+      fog: "${mdo_fog} ${weather_fog}"
+      hail: "${mdo_hail} ${weather_hail}"
+      lightning: "${mdo_lightning} ${weather_lightning}"
+      lightning-rainy: "${mdo_lightning} ${weather_lightning}"
+      partlycloudy: "${mdo_partlycloudy} ${weather_partlycloudy}"
+      pouring: "${mdo_pouring} ${weather_pouring}"
+      rainy: "${mdo_rainy} ${weather_rainy}"
+      snowy: "${mdo_snowy} ${weather_snowy}"
+      snowy-rainy: "${mdo_hail} ${weather_snowy_rainy}"
+      sunny: "${mdo_sunny} ${weather_sunny}"
+      windy: "${mdo_windy} ${weather_windy}"
+      windy-variant: "${mdo_windy} ${weather_windy}"
+
 text_sensor:
   - platform: homeassistant
     id: weather_condition
     entity_id: ${weather_condition_sensor}
     on_value: 
       then:
-        - if:
-            condition:
-              lambda: 'return x == "clear-night";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_clear_night}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_clear_night}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_clear_night} ${weather_clear_night}"
-        - if:
-            condition:
-              lambda: 'return x == "cloudy";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_cloudy}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_cloudy}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_cloudy} ${weather_cloudy}"
-        - if:
-            condition:
-              lambda: 'return x == "exceptional";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_exceptional}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_exceptional}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_exceptional} ${weather_exceptional}"
-        - if:
-            condition:
-              lambda: 'return x == "fog";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_fog}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_fog}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_fog} ${weather_fog}"
-        - if:
-            condition:
-              lambda: 'return x == "hail";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_hail}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_hail}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_hail} ${weather_hail}"
-        - if:
-            condition:
-              lambda: 'return x == "snowy-rainy";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_hail}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_snowy_rainy}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_hail} ${weather_snowy_rainy}"
-        - if:
-            condition:
-              lambda: 'return x == "lightning" || x == "lightning-rainy";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_lightning}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_lightning}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_lightning} ${weather_lightning}"
-        - if:
-            condition:
-              lambda: 'return x == "partlycloudy";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_partlycloudy}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_partlycloudy}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_partlycloudy} ${weather_partlycloudy}"
-        - if:
-            condition:
-              lambda: 'return x == "pouring";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_pouring}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_pouring}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_pouring} ${weather_pouring}"
-        - if:
-            condition:
-              lambda: 'return x == "rainy";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_rainy}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_rainy}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_rainy} ${weather_rainy}"
-        - if:
-            condition:
-              lambda: 'return x == "snowy";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_snowy}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_snowy}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_snowy} ${weather_snowy}"
-        - if:
-            condition:
-              lambda: 'return x == "sunny";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_sunny}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_sunny}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_sunny} ${weather_sunny}"
-        - if:
-            condition:
-              lambda: 'return x == "windy" || x == "windy-variant";'
-            then:
-              - lvgl.label.update:
-                  id: icon_weather_condition
-                  text: ${mdo_windy}
-              - lvgl.label.update:
-                  id: state_weather_condition
-                  text: ${weather_windy}
-              - lvgl.label.update:
-                  id: standby_weather_condition_label
-                  text: "${mdo_windy} ${weather_windy}"
+        - lvgl.label.update:
+            id: icon_weather_condition
+            text: !lambda return id(weather_icon)[x];
+        - lvgl.label.update:
+            id: state_weather_condition
+            text: !lambda return id(weather_condition_translation)[x];
+        - lvgl.label.update:
+            id: standby_weather_condition_label
+            text: !lambda return id(weather_icon_and_condition_translation)[x];
                 
 sensor:
   - platform: homeassistant

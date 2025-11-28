@@ -3,6 +3,7 @@ substitutions:
   absolute_humidity_unit: "g/m³"
   temperature_label: "Temperature"
   temperature_unit: "°C"
+  moisture_unit: "%"
   boot_connecting: "Waiting for connection..."
   boot_no_ssid: "No SSID"
   boot_no_ip: "No IP Address"
