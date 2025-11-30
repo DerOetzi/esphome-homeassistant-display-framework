@@ -3,7 +3,7 @@ esphome:esphome:
     - displays/components/notification_manager.h
   name: ${devicename}
   friendly_name: ${friendly_name}
-  min_version: 2024.11.0
+  min_version: 2025.11.2
 
 logger:
   level: $loglevel
