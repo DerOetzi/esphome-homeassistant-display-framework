@@ -1,3 +1,64 @@
+interval:
+  - interval: 5s
+    then:
+      - script.execute: notification_label_loop
+
+script:
+  - id: notification_add
+    parameters:
+      id_str: string
+      text: string
+    then:
+      - lambda: |-
+          auto &mgr = esphome::NotificationManager::instance();
+          mgr.add_notification(id_str, text);
+
+  - id: notification_remove
+    parameters:
+      id_str: string
+    then:
+      - lambda: |-
+          auto &mgr = esphome::NotificationManager::instance();
+          mgr.remove_notification(id_str);
+
+  - id: notification_label_loop
+    then:
+      - if:
+          condition:
+            lambda: |-
+              auto &mgr = esphome::NotificationManager::instance();
+              mgr.rotate();
+              return id(standby_active).state && mgr.is_dirty();
+          then:
+            - lvgl.label.update:
+                id: standby_notification_local_label
+                text: !lambda |-
+                  auto &mgr = esphome::NotificationManager::instance();
+                  mgr.clear_dirty();
+                  if (mgr.has_notifications()) {
+                    return mgr.get_current_text();
+                  }
+                  return std::string("");
+
+binary_sensor:
+  - platform: template
+    id: standby_active
+    name: "Standby Active"
+    internal: true
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: |-
+                return id(standby_active).state;
+            then:
+              - lvgl.widget.show:
+                  id: standby_screen
+              - script.execute: notification_label_loop
+            else:
+              - lvgl.widget.hide:
+                  id: standby_screen
+
 number:
   - platform: template
     name: Standby brightness

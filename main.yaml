@@ -92,6 +92,9 @@ switch:
 script:
   - id: standby
     then:
+      - binary_sensor.template.publish:
+          id: standby_active
+          state: ON
       - if:
           condition:
             lambda: 'return id(switch_antiburn).state;'
@@ -105,7 +108,6 @@ script:
             - lvgl.pause:
                 show_snow: true
           else:
-            - lvgl.widget.show: standby_screen
             - lvgl.page.show: ${home_page}
             - delay: 1s
             - if:
@@ -141,7 +143,9 @@ script:
     then:
       - lvgl.page.show: ${home_page}
       - script.execute: resume_lvgl
-      - lvgl.widget.hide: standby_screen
+      - binary_sensor.template.publish:
+          id: standby_active
+          state: OFF
       - lvgl.widget.hide: boot_screen
 
 lvgl:
