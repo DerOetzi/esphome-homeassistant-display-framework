@@ -1,0 +1,90 @@
+sensor:
+  - platform: homeassistant
+    id: sensor_room_temperature
+    entity_id: sensor.room_temperature
+    on_value:
+      - lvgl.label.update:
+          id: state_room_temperature
+          text:
+            format: "%.1f"
+            args: [ 'x' ]
+  - platform: homeassistant
+    id: sensor_room_humidity
+    entity_id: sensor.room_humidity
+    on_value:
+      - lvgl.label.update:
+          id: state_room_humidity
+          text:
+            format: "%.0f"
+            args: [ 'x' ]
+  - platform: homeassistant
+    id: sensor_room_absolute_humidity
+    entity_id: sensor.absolute_humidity_room
+    on_value:
+      - lvgl.label.update:
+          id: second_state_room_absolute_humidity
+          text:
+            format: "%.1f"
+            args: [ 'x' ]
+  - platform: homeassistant
+    id: sensor_plant_moisture
+    entity_id: sensor.plant_moisture
+    on_value:
+      - lvgl.label.update:
+          id: state_plant_moisture
+          text:
+            format: "%.0f"
+            args: [ 'x' ]
+      - if:
+          condition:
+            lambda: 'return x < 40;'
+          then:
+            - script.execute: 
+                id: notification_add
+                id_str: "room_plant_water"
+                text: "Plant needs watering"
+          else:
+            - script.execute: 
+                id: notification_remove
+                id_str: "room_plant_water"
+
+packages:
+  common: !include 
+    file: ../displays/pages/common.yaml
+    vars:
+      page_id: room_page
+      page_title: "Room"
+
+lvgl:
+  pages:
+    - id: !extend room_page
+      widgets:
+        - obj:
+            <<: !include ../displays/layout/grid/main.yaml
+            layout:
+                <<: !include ../displays/layout/grid/layout.yaml
+                grid_rows: [FR(1), FR(1)]
+                grid_columns: [FR(1), FR(1), FR(1)]
+            widgets:
+                - obj:
+                    <<: !include 
+                      file: ../displays/layout/states/temperature.yaml
+                      vars: 
+                        state_id: room_temperature
+                        x: 0
+                        y: 0
+                - obj:
+                    <<: !include 
+                      file: ../displays/layout/states/humidity.yaml
+                      vars: 
+                        state_id: room_humidity
+                        x: 1 
+                        y: 0
+                - obj:
+                    <<: !include 
+                      file: ../displays/layout/states/moisture.yaml
+                      vars: 
+                        state_id: room_plant_moisture
+                        plant_name: "Plant"
+                        x: 2 
+                        y: 0

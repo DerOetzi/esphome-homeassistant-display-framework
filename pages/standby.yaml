@@ -31,7 +31,7 @@ script:
               return id(standby_active).state && mgr.is_dirty();
           then:
             - lvgl.label.update:
-                id: standby_notification_local_label
+                id: standby_notification
                 text: !lambda |-
                   auto &mgr = esphome::NotificationManager::instance();
                   mgr.clear_dirty();
@@ -44,7 +44,7 @@ binary_sensor:
   - platform: template
     id: standby_active
     name: "Standby Active"
-    internal: true
+    entity_category: "diagnostic"
     on_state:
       then:
         - if:
@@ -71,6 +71,7 @@ number:
     max_value: 100
     step: 5
     mode: box
+    internal: true
 
 lvgl:
   top_layer:
@@ -122,8 +123,8 @@ lvgl:
                     y: 3
                     colspan: 2
                     font_size: lg
-                text_color: 0xff0000
-                id: standby_notification_local_label
+                text_color: ${color_red}
+                id: standby_notification
 
           on_press:
             then:

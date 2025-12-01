@@ -1,0 +1,17 @@
+substitutions:
+  devicename: room-display
+  friendly_name: Room Display
+  loglevel: INFO
+  home_page: weather_page
+
+packages:
+  common: !include custom_displays/common.yaml 
+  device: !include displays/devices/ESP32-2432S028R_landscape.yaml
+  locales: !include displays/locales/de_DE.yaml
+  main: !include displays/main.yaml
+  weather_config: !include custom_displays/weather_config.yaml
+  weather_page: !include displays/pages/weather.yaml
+  guest_wifi_page: !include displays/pages/guest_wifi.yaml
+  room_page: !include custom_displays/page_room.yaml
+
+

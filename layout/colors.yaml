@@ -1,0 +1,6 @@
+substitutions:
+  color_red: 0xcc0000
+  color_green: 0x006600
+  color_blue: 0x000099
+  color_orange: 0xff3300
+  color_yellow: 0xffcc00

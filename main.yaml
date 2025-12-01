@@ -170,6 +170,8 @@ lvgl:
       - script.execute: standby
 
 packages:
+  fonts: !include fonts/fonts.yaml
+  colors: !include layout/colors.yaml
   header: !include header.yaml
   footer: !include footer.yaml
   standby: !include pages/standby.yaml
