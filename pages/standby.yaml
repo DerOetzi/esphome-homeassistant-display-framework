@@ -39,6 +39,30 @@ script:
                     return mgr.get_current_text();
                   }
                   return std::string("");
+      - if:
+          condition:
+            lambda: |-
+              auto &mgr = esphome::NotificationManager::instance();
+              return id(switch_notification_led).state && mgr.has_notifications();
+          then:
+            - light.turn_on:
+                id: led
+                red: 100%
+                green: 100%
+                blue: 100%
+                effect: "Slow Pulse"
+          else:
+            - light.turn_off:
+                id: led 
+
+switch:
+  - platform: template
+    name: "Notification LED"
+    id: switch_notification_led
+    icon: mdi:clock
+    restore_mode: RESTORE_DEFAULT_ON
+    optimistic: true
+    entity_category: "config"
 
 binary_sensor:
   - platform: template

@@ -45,6 +45,11 @@ light:
     green: output_green
     blue: output_blue
     restore_mode: ALWAYS_OFF
+    effects:
+      - pulse:
+          name: "Slow Pulse"
+          transition_length: 500ms
+          update_interval: 2s
 
 sensor:
   - platform: adc
