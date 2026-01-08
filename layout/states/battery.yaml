@@ -1,0 +1,9 @@
+<<: !include 
+  file: base.yaml
+  vars:
+    x: ${x}
+    y: ${y}
+    state_title: "${state_title}"
+    state_id: ${state_id}
+    state_unit: "%"
+    state_bar_hidden: false

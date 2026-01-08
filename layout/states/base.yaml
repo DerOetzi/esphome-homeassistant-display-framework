@@ -8,6 +8,7 @@ layout:
   <<: !include ../grid/layout.yaml
   grid_rows: [FR(1), FR(2), FR(1)]
   grid_columns: [FR(3), FR(2)]
+  multiple_widgets_per_cell: true
 id: ${state_id}
 widgets:
   - label:
@@ -38,7 +39,7 @@ widgets:
           y: 1
           x_align: START
           y_align: END
-          text: ${state_unit | default(" ")}
+      text: "${state_unit|default(' ')}"
   - label:
       <<: !include
         file: ../grid/label_cell.yaml
@@ -59,5 +60,21 @@ widgets:
           x_align: START
           y_align: END
           font_size: "sm"
-          text: ${second_state_unit | default(" ")}
+      text: "${second_state_unit|default(' ')}"
       text_color: ${second_state_color | default(0x000000)}
+  - bar:
+      <<: !include
+        file: ../grid/cell.yaml
+        vars:
+          x: 0
+          y: 2
+          colspan: 2
+      id: "state_bar_${state_id}"
+      hidden: ${state_bar_hidden | default(true)}
+      min_value: ${state_bar_min | default(0)}
+      max_value: ${state_bar_max | default(100)}
+      bg_color: 0xffffff
+      #bg_opa: 50%
+      #indicator:
+      #  bg_color: 0x0
+      #  bg_opa: 30%
