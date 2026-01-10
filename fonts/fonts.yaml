@@ -45,4 +45,6 @@ substitutions:
   mdo_energy: "\U0000e9a6"
   mdo_electric_car: "\U0000eb1c"
   mdo_heat_pump: "\U0000ec18"
+  mdo_heat_cool: "\U0000f16b"
+  mdo_route: "\U0000eacd"
   

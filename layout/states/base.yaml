@@ -74,7 +74,3 @@ widgets:
       min_value: ${state_bar_min | default(0)}
       max_value: ${state_bar_max | default(100)}
       bg_color: 0xffffff
-      #bg_opa: 50%
-      #indicator:
-      #  bg_color: 0x0
-      #  bg_opa: 30%
