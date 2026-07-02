@@ -2,6 +2,8 @@ esp32:
   board: esp32dev
   framework:
     type: esp-idf
+    advanced:  
+      minimum_chip_revision: '3.1'
 
 spi:
   - id: tft
@@ -59,7 +61,7 @@ sensor:
 
 display:
   - id: main_display
-    platform: ili9xxx
+    platform: mipi_spi
     model: ILI9341
     spi_id: tft
     cs_pin:
@@ -71,7 +73,6 @@ display:
     invert_colors: false
     update_interval: never
     auto_clear_enabled: false
-    rotation: 270
 
 touchscreen:
   - id: main_touchscreen
@@ -86,12 +87,13 @@ touchscreen:
       y_min: 340
       y_max: 3860
     transform:
-      swap_xy: true
+      swap_xy: false
       mirror_x: true
-      mirror_y: true
+      mirror_y: false
 
 lvgl:
   buffer_size: 25%
+  rotation: 270
 
 substitutions:
     HEAD_HEIGHT: 20

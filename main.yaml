@@ -149,7 +149,6 @@ script:
       - lvgl.widget.hide: boot_screen
 
 lvgl:
-  buffer_size: 25%
   default_font: roboto_md
   resume_on_input: true
   on_resume:
