@@ -174,4 +174,5 @@ packages:
   header: !include header.yaml
   footer: !include footer.yaml
   standby: !include pages/standby.yaml
+  overlay: !include pages/overlay.yaml
   boot_screen: !include pages/boot_screen.yaml

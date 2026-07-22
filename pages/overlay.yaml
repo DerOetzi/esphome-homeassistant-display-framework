@@ -1,0 +1,45 @@
+script:
+  - id: overlay_show
+    parameters:
+      text: string
+    then:
+      - lvgl.label.update:
+          id: overlay_text
+          text: !lambda 'return text;'
+      - script.execute: resume_lvgl
+      - lvgl.widget.show:
+          id: overlay_screen
+
+  - id: overlay_hide
+    then:
+      - lvgl.widget.hide:
+          id: overlay_screen
+      - if:
+          condition:
+            lambda: 'return id(standby_active).state;'
+          then:
+            - script.execute: standby
+
+lvgl:
+  top_layer:
+    widgets:
+      - obj:
+          id: overlay_screen
+          hidden: true
+          align: CENTER
+          width: 85%
+          height: SIZE_CONTENT
+          pad_all: 16
+          radius: 12
+          bg_color: 0x42495A
+          bg_opa: COVER
+          border_opa: TRANSP
+          widgets:
+            - label:
+                id: overlay_text
+                width: 100%
+                align: CENTER
+                text_align: CENTER
+                long_mode: WRAP
+                text_font: roboto_lg
+                text_color: 0xFFFFFF

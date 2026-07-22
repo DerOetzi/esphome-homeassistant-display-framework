@@ -40,7 +40,8 @@ text_sensor:
               return buf;
 
 image:
-  - file: https://esphome.io/favicon.ico
+  - platform: file
+    file: https://esphome.io/favicon.ico
     id: boot_esphome_logo
     resize: 100x100
     type: RGB565
